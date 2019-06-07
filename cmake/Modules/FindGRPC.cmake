@@ -7,6 +7,11 @@ find_program(GRPC_PYTHON_PLUGIN
   grpc_python_plugin
   PATHS /usr/local/bin /usr/bin 
   )
+find_program(GRPC_JS_PLUGIN
+  grpc_node_plugin
+  PATHS /usr/local/bin /usr/bin
+  )
+
 
 
 find_library(GRPC_LIBRARY NAMES grpc)

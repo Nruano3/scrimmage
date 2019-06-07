@@ -49,13 +49,15 @@ foreach(PROTO_FILE ${PROTO_FILE_LIST})
       OUTPUT ${PROTO_FILE_GEN_FILES}
       COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} ${ABS_PROTO_NAME} --proto_path=${PROTO_PATH} --proto_path=${SCRIMMAGE_PROTO_PATH} --cpp_out=${GEN_DIR} --grpc_out=${GEN_DIR} --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN}
       COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} ${ABS_PROTO_NAME} --proto_path=${PROTO_PATH} --proto_path=${SCRIMMAGE_PROTO_PATH} --python_out=${GEN_DIR} --grpc_python_out=${GEN_DIR} --plugin=protoc-gen-grpc_python=${GRPC_PYTHON_PLUGIN}
+      COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} ${ABS_PROTO_NAME} --proto_path=${PROTO_PATH} --proto_path=${SCRIMMAGE_PROTO_PATH} --js_out=library=${PROTO_NAME},binary:${SCRIMMAGE_JS_DIR}  --plugin=protoc-gen-grpc=${GRPC_JS_PLUGIN}
+
       DEPENDS ${PROTO_FILE}
       WORKING_DIRECTORY ${PROTO_PATH}
       )
   else()
     add_custom_command(
       OUTPUT ${PROTO_FILE_GEN_FILES}
-      COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} ${ABS_PROTO_NAME} --proto_path=${PROTO_PATH} --proto_path=${SCRIMMAGE_PROTO_PATH} --cpp_out=${GEN_DIR} --python_out=${GEN_DIR}
+      COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} ${ABS_PROTO_NAME} --proto_path=${PROTO_PATH} --proto_path=${SCRIMMAGE_PROTO_PATH} --cpp_out=${GEN_DIR} --python_out=${GEN_DIR} --js_out=${GEN_DIR}
       DEPENDS ${PROTO_FILE}
       WORKING_DIRECTORY ${PROTO_PATH}
       )
